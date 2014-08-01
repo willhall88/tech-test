@@ -1,14 +1,21 @@
 require 'pixel'
 
 describe Pixel do
-	it 'is coloured white when create' do
-	  pixel = Pixel.new
-	  expect(pixel.status).to eq '0'
+	
+	before(:each) {@pixel = Pixel.new}
+
+	it 'is coloured O when create' do
+	  expect(@pixel.status).to eq 'O'
 	end
 
 	it 'is coloured C when edited' do
-		pixel = Pixel.new
-		pixel.edit_colour('C')
-		expect(pixel.status).to eq 'C'
+		@pixel.edit_colour('C')
+		expect(@pixel.status).to eq 'C'
+	end
+
+	it 'is coloured O when cleared' do
+		@pixel.edit_colour('C')
+		@pixel.clear
+		expect(@pixel.status).to eq 'O'
 	end
 end

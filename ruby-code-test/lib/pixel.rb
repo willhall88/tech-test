@@ -2,7 +2,7 @@ class Pixel
 	attr_accessor :colour
 
 	def initialize
-		@colour = '0'
+		@colour = 'O'
 	end
 
 	def status
@@ -11,5 +11,9 @@ class Pixel
 
 	def edit_colour(colour)
 		@colour = colour
+	end
+
+	def clear
+		@colour = 'O'
 	end
 end
