@@ -5,10 +5,6 @@ class Pixel
 		@colour = 'O'
 	end
 
-	def status
-	  return @colour
-	end
-
 	def edit_colour(colour)
 		@colour = colour
 	end
