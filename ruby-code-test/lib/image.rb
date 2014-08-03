@@ -22,7 +22,7 @@ class Image
 	end
 
 	def edit_pixel(column, row, colour)
-		@grid[row-1][column-1].edit_colour(colour)
+		selected_pixel(column, row).edit_colour(colour)
 		return @grid
 	end
 
@@ -37,4 +37,35 @@ class Image
 			edit_pixel(column, row, colour)
 		end
 	end
+
+	def fill(column, row, new_colour)
+		current_colour = selected_pixel_colour(column, row)
+		select_area(column, row, current_colour).each do |pixel|
+			pixel.colour = new_colour
+		end
+	end
+
+	def selected_pixel(column, row)
+		@grid[row-1][column-1]
+	end
+
+	def selected_pixel_colour(column, row)
+		selected_pixel(column, row).colour
+	end
+
+	def select_area(column, row, colour)
+		@pixels_to_fill = []
+		add_neighbours(column, row, colour)
+		@pixels_to_fill
+	end
+
+	def add_neighbours(column, row, colour)
+		@pixels_to_fill << selected_pixel(column, row) if selected_pixel_colour(column, row) == colour
+		@pixels_to_fill << selected_pixel(column+1, row) if selected_pixel_colour(column+1, row) == colour
+    @pixels_to_fill << selected_pixel(column-1, row) if selected_pixel_colour(column-1, row) == colour
+    @pixels_to_fill << selected_pixel(column, row+1) if selected_pixel_colour(column, row+1) == colour
+    @pixels_to_fill << selected_pixel(column, row-1) if selected_pixel_colour(column, row-1) == colour
+	end
 end
+
+

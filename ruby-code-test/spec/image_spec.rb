@@ -33,7 +33,6 @@ describe Image do
 		end
 
 		specify 'a chosen pixel on the image can have its colour changed' do
-			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 			@image.edit_pixel(2,2,"C")
 			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'C', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 		end
@@ -46,6 +45,14 @@ describe Image do
 		specify 'a vertical line of pixels can be edited' do
 			@image.vertical_line(1, 1, 2, "C")
 			expect(@image.colours).to eq [['C', 'O', 'O', 'O'], ['C', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
+		end
+
+		context 'filling a region' do
+
+			specify 'adjacent pixels to a selected pixel can be coloured' do
+				@image.fill(2, 2, 'C')
+				expect(@image.colours).to eq [['O', 'C', 'O', 'O'], ['C', 'C', 'C', 'O'], ['O', 'C', 'O', 'O'], ['O', 'O', 'O', 'O']]
+			end
 		end
 	end
 end
