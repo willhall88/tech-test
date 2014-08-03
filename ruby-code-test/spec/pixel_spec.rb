@@ -4,7 +4,7 @@ describe Pixel do
 	
 	before(:each) {@pixel = Pixel.new}
 
-	it 'is coloured O when create' do
+	it 'is coloured O when created' do
 	  expect(@pixel.colour).to eq 'O'
 	end
 

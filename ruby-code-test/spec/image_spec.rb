@@ -26,16 +26,26 @@ describe Image do
 	end
 
 	context 'pixel editing' do
-		before(:each) {@image = Image.new(2,2)}
+		before(:each) {@image = Image.new(4,4)}
 
-		specify 'each pixel is created with a colour "O"' do
-			expect(@image.colours).to eq [['O', 'O'], ['O', 'O']]
+		specify 'the image is created with all pixels coloured "O"' do
+			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 		end
 
 		specify 'a chosen pixel on the image can have its colour changed' do
-			expect(@image.colours).to eq [['O', 'O'], ['O', 'O']]
+			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 			@image.edit_pixel(2,2,"C")
-			expect(@image.colours).to eq [['O', 'O'], ['O', 'C']]
+			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'C', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
+		end
+
+		specify 'a horizontal line of pixels can be edited' do
+			@image.horizontal_line(1, 1, 2, "C")
+			expect(@image.colours).to eq [['C', 'C', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
+		end
+
+		specify 'a vertical line of pixels can be edited' do
+			@image.vertical_line(1, 1, 2, "C")
+			expect(@image.colours).to eq [['C', 'O', 'O', 'O'], ['C', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 		end
 	end
 end
