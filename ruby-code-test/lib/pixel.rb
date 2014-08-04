@@ -1,15 +1,13 @@
 class Pixel
-	attr_accessor :colour
+	attr_accessor :colour, :position
 
 	def initialize
 		@colour = 'O'
-	end
-
-	def edit_colour(colour)
-		@colour = colour
+		@position = []
 	end
 
 	def clear
 		@colour = 'O'
 	end
+
 end

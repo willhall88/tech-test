@@ -9,13 +9,17 @@ describe Pixel do
 	end
 
 	it 'is coloured C when edited' do
-		@pixel.edit_colour('C')
+		@pixel.colour = 'C'
 		expect(@pixel.colour).to eq 'C'
 	end
 
 	it 'is coloured O when cleared' do
-		@pixel.edit_colour('C')
+		@pixel.colour = 'C'
 		@pixel.clear
 		expect(@pixel.colour).to eq 'O'
+	end
+
+	it 'has no position when created' do
+		expect(@pixel.position).to eq []
 	end
 end

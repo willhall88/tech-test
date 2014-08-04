@@ -7,6 +7,7 @@ class Image
 	def initialize(width, height)
 		raise 'Invalid size' if (height | width) > 250
 		@grid = Array.new(height){Array.new(width){Pixel.new}}
+		@grid.each_with_index{|row, row_index| row.each_with_index{|pixel, column_index| pixel.position = [column_index+1, row_index+1]}}
 	end
 
 	def width
@@ -21,8 +22,12 @@ class Image
 		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.colour}}
 	end
 
+	def positions
+		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.position}}
+	end
+
 	def edit_pixel(column, row, colour)
-		selected_pixel(column, row).edit_colour(colour)
+		selected_pixel(column, row).colour= (colour)
 		return @grid
 	end
 
@@ -45,27 +50,44 @@ class Image
 		end
 	end
 
+	def select_area(column, row, colour)
+		@pixels_to_fill = []
+		add_neighbours(column, row, colour)
+		area_completed?(@pixels_to_fill, colour)
+		@pixels_to_fill
+	end
+
+	def add_neighbours(column, row, colour)
+		@pixels_to_fill << selected_pixel(column+1, row) if (!selected_pixel(column+1, row).nil?) && (selected_pixel_colour(column+1, row) == colour)
+    @pixels_to_fill << selected_pixel(column-1, row) if (!selected_pixel(column-1, row).nil?) && (selected_pixel_colour(column-1, row) == colour)
+    @pixels_to_fill << selected_pixel(column, row+1) if (!selected_pixel(column, row+1).nil?) && (selected_pixel_colour(column, row+1) == colour)
+    @pixels_to_fill << selected_pixel(column, row-1) if (!selected_pixel(column, row-1).nil?) && (selected_pixel_colour(column, row-1) == colour)
+		@pixels_to_fill << selected_pixel(column, row) if selected_pixel_colour(column, row) == colour
+    @pixels_to_fill.uniq!
+	end
+
+	def area_completed?(selection, colour)
+		selection.each do |pixel|
+			pixel_column = pixel.position.first
+			pixel_row = pixel.position.last
+			add_neighbours(pixel_column, pixel_row, colour)
+			if @pixels_to_fill.count == selection.count
+				@pixels_to_fill
+			else
+				area_completed?(@pixels_to_fill, colour)
+			end
+		end
+	end
+
 	def selected_pixel(column, row)
-		@grid[row-1][column-1]
+		@grid.flatten.find{|pixel| pixel.position == [column, row]}
 	end
 
 	def selected_pixel_colour(column, row)
 		selected_pixel(column, row).colour
 	end
 
-	def select_area(column, row, colour)
-		@pixels_to_fill = []
-		add_neighbours(column, row, colour)
-		@pixels_to_fill
-	end
 
-	def add_neighbours(column, row, colour)
-		@pixels_to_fill << selected_pixel(column, row) if selected_pixel_colour(column, row) == colour
-		@pixels_to_fill << selected_pixel(column+1, row) if selected_pixel_colour(column+1, row) == colour
-    @pixels_to_fill << selected_pixel(column-1, row) if selected_pixel_colour(column-1, row) == colour
-    @pixels_to_fill << selected_pixel(column, row+1) if selected_pixel_colour(column, row+1) == colour
-    @pixels_to_fill << selected_pixel(column, row-1) if selected_pixel_colour(column, row-1) == colour
-	end
 end
 
 
