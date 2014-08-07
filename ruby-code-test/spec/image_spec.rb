@@ -4,18 +4,21 @@ describe Image do
 	context 'Image sizing' do
 		it 'can be 1 pixel by 1 pixel' do
 			image = Image.new(1,1)
+
 			expect(image.width).to eq 1
 			expect(image.height).to eq 1
 		end
 
 		it 'can be 2 pixels by 3 pixels' do
 			image = Image.new(2,3)
+
 			expect(image.width).to eq 2
 			expect(image.height).to eq 3
 		end
 
 		it 'can be 250 pixels by 250 pixels' do
 			image = Image.new(250,250)
+
 			expect(image.width).to eq 250
 			expect(image.height).to eq 250
 		end
@@ -38,11 +41,13 @@ describe Image do
 
 		specify 'a chosen pixel on the image can have its colour changed' do
 			@image.edit_pixel(2,2,"C")
+
 			expect(@image.colours).to eq [['O', 'O', 'O', 'O'], ['O', 'C', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 		end
 
 		specify 'a horizontal line of pixels can be edited' do
 			@image.horizontal_line(1, 1, 2, "C")
+			
 			expect(@image.colours).to eq [['C', 'C', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O'], ['O', 'O', 'O', 'O']]
 		end
 
@@ -57,6 +62,7 @@ describe Image do
 				@image.vertical_line(2, 1, 4, 'C')
 				@image.edit_pixel(3, 1, 'D')
 				@image.fill(3, 3, 'C')
+
 				expect(@image.colours).to eq [['O', 'C', 'D', 'C'], ['O', 'C', 'C', 'C'], ['O', 'C', 'C', 'C'], ['O', 'C', 'C', 'C']]
 			end
 		end

@@ -58,12 +58,19 @@ class Image
 	end
 
 	def add_neighbours(column, row, colour)
-		@pixels_to_fill << selected_pixel(column+1, row) if (!selected_pixel(column+1, row).nil?) && (selected_pixel_colour(column+1, row) == colour)
-    @pixels_to_fill << selected_pixel(column-1, row) if (!selected_pixel(column-1, row).nil?) && (selected_pixel_colour(column-1, row) == colour)
-    @pixels_to_fill << selected_pixel(column, row+1) if (!selected_pixel(column, row+1).nil?) && (selected_pixel_colour(column, row+1) == colour)
-    @pixels_to_fill << selected_pixel(column, row-1) if (!selected_pixel(column, row-1).nil?) && (selected_pixel_colour(column, row-1) == colour)
-		@pixels_to_fill << selected_pixel(column, row) if selected_pixel_colour(column, row) == colour
+		find_neighbours(column, row)
+		@neighbours.each do |neighbour|
+			@pixels_to_fill << neighbour if !neighbour.nil? && (neighbour.colour == colour)
+		end
     @pixels_to_fill.uniq!
+	end
+
+	def find_neighbours(column, row)
+		pixel_above = selected_pixel(column, row-1)
+		pixel_below = selected_pixel(column, row+1)
+		pixel_left = selected_pixel(column-1, row)
+		pixel_right = selected_pixel(column+1, row)
+		@neighbours = [pixel_above, pixel_below, pixel_right, pixel_left]
 	end
 
 	def area_completed?(selection, colour)
