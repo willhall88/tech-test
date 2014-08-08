@@ -5,11 +5,18 @@ class Image
 	attr_accessor :grid
 
 	def initialize(width, height)
-		raise 'Invalid size' if (height | width) > 250
+		raise 'Invalid size' if invalid_dimensions(width, height)
 		@grid = Array.new(height){Array.new(width){Pixel.new}}
 		@grid.each_with_index{|row, row_index| row.each_with_index{|pixel, column_index| pixel.position = [column_index+1, row_index+1]}}
 	end
 
+	def clear
+		@grid.flatten.each{|pixel| pixel.colour = 'O'}
+	end
+
+	def invalid_dimensions(width, height)
+		width <= 1 || height >= 250
+	end
 	def width
 		@grid[0].length
 	end
