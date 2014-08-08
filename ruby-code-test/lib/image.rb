@@ -8,12 +8,13 @@ class Image
 		width  = dimensions[0]
 		height = dimensions[1]
 
-		raise 'Invalid size' if invalid_dimensions(width, height)
+		return puts('Invalid size') if invalid_dimensions(width, height)
+		
 		@grid = Array.new(height){Array.new(width){Pixel.new}}
 		@grid.each_with_index{|row, row_index| row.each_with_index{|pixel, column_index| pixel.position = [column_index+1, row_index+1]}}
 	end
 
-	def print
+	def print_image
 		colours.map{|row| row.join}.join("\n")
 	end
 

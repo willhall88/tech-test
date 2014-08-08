@@ -1,20 +1,26 @@
 require './lib/image'
 
+
 class Commands
 	attr_accessor :command, :arguments, :image
 
 	def initialize
 		@command = 'O'
 		@arguments = []
-		@image = Image.new([2,2])
 	end
 
 	def process_input(input)
-		array = input.split(//)
+		array = input.split(/ /)
 		@command = array.shift.upcase
 		@arguments = convert_arguments(array)
-		execute_command(@command, @arguments)
+		if command_valid
+			return puts 'Please create and image'
+		else
+			execute_command(@command, @arguments)
+		end
 	end
+
+	private
 
 	def execute_command(command, arguments)
 		case command
@@ -28,10 +34,10 @@ class Commands
 				@image.vertical_line(arguments)
 			when "H"
 				@image.horizontal_line(arguments)
-			when "F"
+			when "F" 
 				@image.fill(arguments)
-			when "S"
-				puts @image.print
+			when "S" 
+				puts @image.print_image
 			when "X"
 				puts "Goodbye"
 			  exit
@@ -48,6 +54,10 @@ class Commands
 				element
 			end
 		end
+	end
+
+	def command_valid
+		@image.nil? && !['I', 'X'].include?(@command)
 	end
 
 end

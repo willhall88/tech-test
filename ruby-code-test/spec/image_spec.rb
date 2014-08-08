@@ -11,11 +11,13 @@ describe Image do
 		end
 
 		it 'cannot be 0 pixels by 3 pixels' do
-			expect{Image.new([0,3])}.to raise_error 'Invalid size'
+			expect(STDOUT).to receive(:puts).with('Invalid size')
+			Image.new([0,3])
 		end
 
 		it 'cannot be 3 pixels by 251 pixels' do
-			expect{Image.new([3,251])}.to raise_error 'Invalid size'
+			expect(STDOUT).to receive(:puts).with('Invalid size')
+			Image.new([3,251])
 		end
 	end
 
@@ -63,7 +65,7 @@ describe Image do
 			image = Image.new([4,4])
 			printed_image = "OOOO\nOOOO\nOOOO\nOOOO"
 			
-			expect(image.print).to eq printed_image
+			expect(image.print_image).to eq printed_image
 		end
 	end
 	context 'clearing an image' do
