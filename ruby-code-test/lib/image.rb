@@ -13,6 +13,10 @@ class Image
 		@grid.each_with_index{|row, row_index| row.each_with_index{|pixel, column_index| pixel.position = [column_index+1, row_index+1]}}
 	end
 
+	def print
+		colours.map{|row| row.join}.join("\n")
+	end
+
 	def clear
 		@grid.flatten.each{|pixel| pixel.colour = 'O'}
 	end

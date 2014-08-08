@@ -58,6 +58,14 @@ describe Image do
 		end
 	end
 
+	context 'showing an image' do
+		it 'should print the image to the screen' do
+			image = Image.new([4,4])
+			printed_image = "OOOO\nOOOO\nOOOO\nOOOO"
+			
+			expect(image.print).to eq printed_image
+		end
+	end
 	context 'clearing an image' do
 		it 'should clear the image of colours' do
 			image = Image.new([4,4])

@@ -31,7 +31,7 @@ class Commands
 			when "F"
 				@image.fill(arguments)
 			when "S"
-				puts @image.colours.inspect
+				puts @image.print
 			when "X"
 				puts "Goodbye"
 			  exit
