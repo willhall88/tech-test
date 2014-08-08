@@ -9,4 +9,9 @@ describe Commands do
 		expect(@instance.arguments).to eq [2,2]
 	end
 
+	it 'can check whether any of the arguments are colours' do
+		@instance.send(:process_input, 'L22C')
+		expect(@instance.arguments).to eq [2, 2, 'C']
+	end
+
 end

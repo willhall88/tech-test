@@ -4,7 +4,10 @@ class Image
 
 	attr_accessor :grid
 
-	def initialize(width, height)
+	def initialize(dimensions)
+		width  = dimensions[0]
+		height = dimensions[1]
+
 		raise 'Invalid size' if invalid_dimensions(width, height)
 		@grid = Array.new(height){Array.new(width){Pixel.new}}
 		@grid.each_with_index{|row, row_index| row.each_with_index{|pixel, column_index| pixel.position = [column_index+1, row_index+1]}}
@@ -14,9 +17,57 @@ class Image
 		@grid.flatten.each{|pixel| pixel.colour = 'O'}
 	end
 
+	def edit_pixel(params)
+		column = params[0]
+		row = params[1]
+		colour = params[2]
+
+		selected_pixel(column, row).colour= (colour)
+		return @grid
+	end
+
+	def horizontal_line(params)
+		row = params[0]
+		start_column = params[1]
+		end_column = params[2]
+		colour = params[3]
+
+		(start_column..end_column).each do |column|
+			edit_pixel([column, row, colour])
+		end
+	end
+
+	def vertical_line(params)
+		column = params[0]
+		start_row = params[1]
+		end_row = params[2]
+		colour = params[3]
+
+		(start_row..end_row).each do |row|
+			edit_pixel([column, row, colour])
+		end
+	end
+
+	def fill(params)
+		column = params[0]
+		row = params[1]
+		new_colour = params[2]
+
+		current_colour = selected_pixel_colour(column, row)
+		select_area(column, row, current_colour).each do |pixel|
+			pixel.colour = new_colour
+		end
+	end
+
+	def colours
+		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.colour}}
+	end
+
+
 	def invalid_dimensions(width, height)
 		width <= 1 || height >= 250
 	end
+
 	def width
 		@grid[0].length
 	end
@@ -25,36 +76,8 @@ class Image
 		@grid.length
 	end
 
-	def colours
-		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.colour}}
-	end
-
 	def positions
 		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.position}}
-	end
-
-	def edit_pixel(column, row, colour)
-		selected_pixel(column, row).colour= (colour)
-		return @grid
-	end
-
-	def horizontal_line(row, start_column, end_column, colour)
-		(start_column..end_column).each do |column|
-			edit_pixel(column, row, colour)
-		end
-	end
-
-	def vertical_line(column, start_row, end_row, colour)
-		(start_row..end_row).each do |row|
-			edit_pixel(column, row, colour)
-		end
-	end
-
-	def fill(column, row, new_colour)
-		current_colour = selected_pixel_colour(column, row)
-		select_area(column, row, current_colour).each do |pixel|
-			pixel.colour = new_colour
-		end
 	end
 
 	def select_area(column, row, colour)
