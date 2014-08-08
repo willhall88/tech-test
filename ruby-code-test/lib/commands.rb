@@ -1,7 +1,10 @@
 require './lib/image'
+require './lib/helpers/command_helper'
 
 
 class Commands
+	include CommandHelpers
+
 	attr_accessor :command, :arguments, :image
 
 	def initialize
@@ -46,18 +49,5 @@ class Commands
 			end
 	end
 
-	def convert_arguments(arguments)
-		arguments.map do |element|
-			if /[0-9]/ === element
-				element.to_i
-			else
-				element
-			end
-		end
-	end
-
-	def command_valid
-		@image.nil? && !['I', 'X'].include?(@command)
-	end
 
 end

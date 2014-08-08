@@ -1,6 +1,10 @@
 require './lib/pixel'
+require './lib/helpers/image_helper'
+require './lib/helpers/fill_helper'
 
 class Image
+	include ImageHelper
+	include FillHelper
 
 	attr_accessor :grid
 
@@ -63,72 +67,6 @@ class Image
 			pixel.colour = new_colour
 		end
 	end
-
-	def colours
-		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.colour}}
-	end
-
-
-	def invalid_dimensions(width, height)
-		width <= 1 || height >= 250
-	end
-
-	def width
-		@grid[0].length
-	end
-
-	def height
-		@grid.length
-	end
-
-	def positions
-		pixel_colours = @grid.map{|row| row.map{|pixel| pixel.position}}
-	end
-
-	def select_area(column, row, colour)
-		@pixels_to_fill = []
-		add_neighbours(column, row, colour)
-		area_completed?(@pixels_to_fill, colour)
-		@pixels_to_fill
-	end
-
-	def add_neighbours(column, row, colour)
-		find_neighbours(column, row)
-		@neighbours.each do |neighbour|
-			@pixels_to_fill << neighbour if !neighbour.nil? && (neighbour.colour == colour)
-		end
-    @pixels_to_fill.uniq!
-	end
-
-	def find_neighbours(column, row)
-		pixel_above = selected_pixel(column, row-1)
-		pixel_below = selected_pixel(column, row+1)
-		pixel_left = selected_pixel(column-1, row)
-		pixel_right = selected_pixel(column+1, row)
-		@neighbours = [pixel_above, pixel_below, pixel_right, pixel_left]
-	end
-
-	def area_completed?(selection, colour)
-		selection.each do |pixel|
-			pixel_column = pixel.position.first
-			pixel_row = pixel.position.last
-			add_neighbours(pixel_column, pixel_row, colour)
-			if @pixels_to_fill.count == selection.count
-				@pixels_to_fill
-			else
-				area_completed?(@pixels_to_fill, colour)
-			end
-		end
-	end
-
-	def selected_pixel(column, row)
-		@grid.flatten.find{|pixel| pixel.position == [column, row]}
-	end
-
-	def selected_pixel_colour(column, row)
-		selected_pixel(column, row).colour
-	end
-
 
 end
 
