@@ -7,30 +7,17 @@
   <body>
     <h1>JavaScript Coding Test</h1>
     <div id="content">
-    	<template id='avatar-template'>
-    		<img src="{{committer.avatar_url}}">
-    	</template>
+
     </div>
     
+  	<template id='avatar-template'>
+  		<img id="{{id}}" commits="{{commits}}" src="{{avatar_url}}">
+  	</template>
+
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' type='text/javascript'></script>
     <script src="mustache.js"></script>
-    <script>
-      $(document).ready(function() {
-        addAvatar();
-      });
-
-      function addAvatar(){
-      	$.get('https://api.github.com/repos/rails/rails/commits', function(commits){
-      		firstTwentyCommits = commits.slice(0,20);
-      		console.log(firstTwentyCommits);
-      		firstTwentyCommits.forEach(function(commit){
-      			var newAvatar = Mustache.render($('#avatar-template').html(), commit);
-      			$(newAvatar).prependTo('#content')
-      		});
-      	});
-      };
-      
-    </script>
-
+    <script type="text/javascript" src="src/application.js"></script>
+    <script type="text/javascript" src="src/avatar.js"></script>
+    <script type="text/javascript" src="src/commits.js"></script>
   </body>
 </html>

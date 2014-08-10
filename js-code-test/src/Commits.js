@@ -2,40 +2,34 @@ function ImageSizer(commits) {
 	this.commitArray = commits
 }
 
+ImageSizer.prototype.calculateSize = function(){
+	var users = this.findCommitsByUser();
+	users.forEach(function(user){
+		user.avatar_size = user.commits * 10 + 40;
+	})
+	return users;
+};
+
+ImageSizer.prototype.findCommitsByUser = function() {
+	var pulledData = this.pullData();
+	pulledData.sort(sortById);
+	this.addCommits(pulledData);
+	uniqueData = this.removeDuplicates(pulledData);
+	return uniqueData;
+};
 
 ImageSizer.prototype.pullData = function() { 
-	newArray =[];
+	var pulledData =[];
 	this.commitArray.forEach(function(commit){
-		newArray.push({id: commit.committer.id, avatar_url: commit.committer.avatar_url});
+		pulledData.push({id: commit.committer.id, avatar_url: commit.committer.avatar_url});
 	});
-	return newArray;
+	return pulledData;
 };
-
-ImageSizer.prototype.checkCommits = function() {
-	newArray = this.pullData();
-	newArray.sort(sortById);
-	this.addCommits(newArray);
-	this.removeDuplicates(newArray);
-	return newArray;
-};
-
-
-ImageSizer.prototype.removeDuplicates = function(array){
-	var previousCommit = 0
-	array.reverse().forEach(function(commit){
-		if (commit.id == previousCommit.id){
-			i = array.indexOf(commit);
-			array.splice(i, 1);
-		}
-		previousCommit = commit;
-	});
-	array.reverse();
-}
 
 ImageSizer.prototype.addCommits = function(array){
 	var previousCommit = 0;
 	var count = 1;
-	newArray.forEach(function(commit){
+	array.forEach(function(commit){
 		if (commit.id === previousCommit.id){
 			count++;
 			commit.commits = count;
@@ -46,6 +40,26 @@ ImageSizer.prototype.addCommits = function(array){
 		previousCommit = commit;
 	});
 }
+
+ImageSizer.prototype.removeDuplicates = function(array){
+	var uniqArray = [];
+	
+	while (array.length > 1) {
+		if (array[0].id === array[1].id){
+			array.shift();
+		} else {
+			uniqArray.push(array[0]);
+			array.shift();
+		}
+	}
+	if (array[0].id !== uniqArray.reverse()[0].id){
+		uniqArray.push(array[0])
+	}
+
+	return uniqArray;
+}
+
+
 
 function sortById(first, second){
 	if (first.id > second.id){
