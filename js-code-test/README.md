@@ -20,12 +20,12 @@ When it came to setting the size of the avatars I would have preferred to have g
 
 Technologies used
 ----
--Javascript
--jQuery
--Jasmine
--AJAX
--Git
--Github API
+- Javascript
+- jQuery
+- Jasmine
+- AJAX
+- Git
+- Github API
 
 How to run it
 ----
