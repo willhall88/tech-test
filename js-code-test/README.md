@@ -43,4 +43,4 @@ open SpecRunner.html
 
 Result:
 
-![Screenshot](screenshot.jpg)
+![Screenshot](images/screenshot.jpg)

@@ -20,7 +20,7 @@ open test.html
 
 ### Example
 
-![Screenshot](example.jpg)
+![Screenshot](images/example.jpg)
 
 ### Result
-![Screenshot](result.jpg)
+![Screenshot](images/result.jpg)
