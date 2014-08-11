@@ -14,7 +14,7 @@ ImageSizer.prototype.calculateSize = function(){
 ImageSizer.prototype.findCommitsByUser = function() {
 	var pulledData = this.pullData();
 
-	pulledData.sort(this.sortById);
+	
 	var uniqueData = this.addCommits(pulledData);
 	
 	return uniqueData;
@@ -30,6 +30,8 @@ ImageSizer.prototype.pullData = function() {
 };
 
 ImageSizer.prototype.addCommits = function(array){
+	array.sort(this.sortById);
+
 	var uniqArray = [];
 	var previousCommit = 0;
 	var count = 1;
