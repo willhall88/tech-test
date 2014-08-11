@@ -68,6 +68,7 @@ describe Image do
 			expect(image.print_image).to eq printed_image
 		end
 	end
+	
 	context 'clearing an image' do
 		it 'should clear the image of colours' do
 			image = Image.new([4,4])

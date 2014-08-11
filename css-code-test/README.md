@@ -1,11 +1,26 @@
-# HTML and CSS Coding Test
+# HTML and CSS Technical Test
 
-Your task is to create a login box with HTML and CSS as close to the `example.jpg` as you think is reasonable.  
-We've included the font in the `style.css` file too, please complete the task in `test.html`.  
+The task was to create a login box with HTML and CSS as close to the `example.jpg` as is reasonable.
 
-## Bonus points for responsive design!
+I was quite happy with my result for this task. There are a few more small differences between the example and the result, but in general I feel it is a very close match. I started off be noting down the colours of each part of the example and taking some measurements to work to. 
 
+The font was already provided for the task, however the padlock and user icons were not, in this case I took a copy of the images from the example. If I was not working to an example I would probably have found an icon online for this, perhaps from a bootstrap template.
 
-### Example Result
+Technologies used
+----
+-HTML5
+-CSS3
+
+How to run it
+----
+```sh
+cd css-code-test
+open test.html
+```
+
+### Example
 
 ![Screenshot](example.jpg)
+
+### Result
+![Screenshot](result.jpg)

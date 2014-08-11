@@ -5,7 +5,7 @@ module CommandHelpers
 			if /[0-9]/ === element
 				element.to_i
 			else
-				element
+				element.upcase
 			end
 		end
 	end

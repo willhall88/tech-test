@@ -1,14 +1,34 @@
-# Technical Test  
+# Ruby Technical Test  
 
-Graphical editors allow users to edit images in the same way text editors let us modify documents. 
-Images are represented as an _M x N_ array of pixels with each pixel given colour.
+**This test is to produce a program that simulates a simple interactive graphical editor. More details on how the program functions are at the bottom of the README. **
 
-**This test is to produce a program that simulates a simple interactive graphical editor.**
+I started off this test by writing down what classes there should be and what responsibilities they should have. I began with creating a pixel object which the image would be made up of. The pixel was responsible for knowing what colour it was and later when I got to creating the fill functionality I realised it needed to know its own position as well. The image class was then built up out of nested arrays of pixels and was responsible for changing the image of pixels. The commands class was then responsible for interpreting the user input and communicating those inputs to the image class.
+I wrote rspec tests to help build up each part of the program before it was ready to be tested manually. When I had the program running I could then test true user input and could find any edge cases that might crash the program.
+
+
+Technologies used
+----
+-Ruby
+-Rspec
+
+How to run it
+----
+```sh
+cd ruby-code-test
+./start_editing.rb
+```
+
+How to run unit tests
+----
+```sh
+cd ruby-code-test
+rspec
+```
 
 ## Input
 
 The input consists of a line containing a sequence of commands. Each command is represented by a single capital letter at the start of the line. 
-Arguments to the command are separated by spaces and follow the command character.  
+Arguments to the command are separated by spaces and follow the command character.
 
 Pixel co-ordinates are represented by a pair of integers: 
 
@@ -18,7 +38,7 @@ Pixel co-ordinates are represented by a pair of integers:
 Where _1 <= M_, _N <= 250_. 
 
 The origin sits in the upper-left of the table.  
-Colours are specified by capital letters.  
+Colours are specified by capital letters. 
 
 ## Commands
 
@@ -39,17 +59,6 @@ In the example below, > denotes input, => denotes program output.
 
 ```
 > I56 
-> L23A 
-> S
-
-=>
-OOOOO
-OOOOO
-OAOOO
-OOOOO
-OOOOO
-OOOOO
-
 > F33J 
 > V234W 
 > H342Z 
@@ -64,9 +73,5 @@ JJJJJ
 JJJJJ
 ```
 
-##￼Submission  
-
-We prefer submissions in Ruby complete with tests using your preferred testing library.  
-Please provide an executable solution with any source files in a common archive format (ZIP, RAR, TAR etc.)
 
 ￼
