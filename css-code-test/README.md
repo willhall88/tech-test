@@ -8,8 +8,8 @@ The font was already provided for the task, however the padlock and user icons w
 
 Technologies used
 ----
--HTML5
--CSS3
+- HTML5
+- CSS3
 
 How to run it
 ----
