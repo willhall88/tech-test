@@ -2,14 +2,14 @@
 
 **This test is to produce a program that simulates a simple interactive graphical editor. More details on how the program functions are at the bottom of the README. **
 
-I started off this test by writing down what classes there should be and what responsibilities they should have. I began with creating a pixel object which the image would be made up of. The pixel was responsible for knowing what colour it was and later when I got to creating the fill functionality I realised it needed to know its own position as well. The image class was then built up out of nested arrays of pixels and was responsible for changing the image of pixels. The commands class was then responsible for interpreting the user input and communicating those inputs to the image class.
+I started off this test by writing down what classes there should be and what responsibilities they should have. I began with creating a pixel object which would make up the image. The pixel was responsible for knowing what colour it was,  later when I was creating the fill image method I realised it needed to know its own position within the image as well. The image class was built up out of nested arrays of pixels and was responsible for changing the image of pixels. The commands class was responsible for interpreting the user input and communicating those inputs to the image class.
 I wrote rspec tests to help build up each part of the program before it was ready to be tested manually. When I had the program running I could then test true user input and could find any edge cases that might crash the program.
 
 
 Technologies used
 ----
--Ruby
--Rspec
+- Ruby
+- Rspec
 
 How to run it
 ----
