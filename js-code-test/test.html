@@ -3,16 +3,30 @@
   <head>
     <title>JavaScript Coding Test</title>
     <style type="text/css"></style>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   </head>
   <body>
-    <h1>JavaScript Coding Test</h1>
-    <div id="content">
-
-    </div>
+    <section class="border">
+      <section class="body">
+        <h1>JavaScript Coding Test</h1>
+        <form class='search'>
+          <label>Enter a repository: repo-owner/repo-name</label>
+          <input id='repo' type="text" name="search" placeholder=" willhall88/angry-kitty ">
+          <button type='submit'>Load repository</button>
+        </form>
+        <hr>
+        <div id="content">
+        </div>
+      </section>
+    </section>
     
-  	<template id='avatar-template'>
-  		<img id="{{id}}" commits="{{commits}}" src="{{avatar_url}}">
-  	</template>
+    <template id='avatar-template'>
+      <span class="commit">
+        <img id="{{id}}" class="{{commits}}" src="{{avatarUrl}}">
+      </span>
+    </template>
 
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' ></script>
     <script type="text/javascript" src="lib/mustache.js"></script>
