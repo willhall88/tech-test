@@ -1,6 +1,9 @@
 <?php
   // ini_set('display_errors',1);  
   // error_reporting(E_ALL);
+
+  require_once ('jpgraph/src/jpgraph.php');
+  require_once ('jpgraph/src/jpgraph_scatter.php');
   $curl_handler = curl_init("http://en.wikipedia.org/wiki/List_of_highest-grossing_films");
   curl_setopt($curl_handler, CURLOPT_RETURNTRANSFER, true);
   $cl = curl_exec($curl_handler);
@@ -24,14 +27,24 @@
       array_push($year, $subject);
     }
     elseif (preg_match($currency_pattern, $subject)) {
-      array_push($revenue, $subject);
+      $money = str_replace(array('$', ','), '' , $subject);
+      array_push($revenue, $money);
     }
 
   }
 
-  echo "<pre>";
-  print_r(array_values($year));
-  print_r(array_values($revenue));
+  $graph = new Graph(900,600);
+  $graph->SetScale("linlin");
+
+  $graph->img->SetMargin(100,100,100,100);    
+  $graph->SetShadow();
+
+  $graph->title->Set("Adjusted Gross Revenue vs Film Year");
+  $graph->title->SetFont(FF_FONT1,FS_BOLD);
+
+  $sp1 = new ScatterPlot($revenue,$year);
+
+  $graph->Add($sp1);
+  $graph->Stroke();
 ?>
-    
     
