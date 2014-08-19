@@ -1,7 +1,15 @@
 # PHP Technical Test
 
-I encountered a number of problems when trying to set up my local environment to carry this task out. I ended up using MAMP to run a local server in order for me to check my output, however I am still not receiving any error messages which is making debugging hard, especially as I am knew to using php.
-In its current state I have run some basic code to extract the relevant table data from the website, with the aim at now looking into using a graphing library to output the data. 
+As I started this project very new to PHP (it being my very first piece of PHP code) I started off just using some trial and error to see what I could get to appear on the screen and understanding the syntax and methods. The task kind of grew from there. I will look into starting this task from scratch with tests as the next step.
+
+I encountered a few problems to begin with in this task whilst trying to set up my local environment, however I managed to overcome most of these with more research and some trial and error.
+I used MAMP to run a local server to check my output. I decided to use this as it was quite straight forward to setup and use meaning I could focus more on the task rather than setting up and running a server (I originally attempted to use Nginx, but had problems which were taking too long to solve. I will look back into this at a later stage).
+
+In its current state I have managed to write some quite basic code which scrapes the relevant data and puts the revenue and year into seperate arrays. These arrays are then used to create a graph using JpGraph. There is plenty of refactoring and cleaning of the code to be done.
+
+
+The task
+========
 
 Your task for this test is below. Use PHP throughout and whatever libraries you deem appropriate. Please do all visualisation heavy lifting in PHP, so no use of Javascript for graphing for example, though do feel free to use CSS in your final output.
 
