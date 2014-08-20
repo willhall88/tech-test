@@ -9,7 +9,7 @@ In its current state I have managed to write some quite basic code which scrapes
 
 
 The task
-========
+--------
 
 Your task for this test is below. Use PHP throughout and whatever libraries you deem appropriate. Please do all visualisation heavy lifting in PHP, so no use of Javascript for graphing for example, though do feel free to use CSS in your final output.
 
