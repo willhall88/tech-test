@@ -5,7 +5,7 @@
 </head>
 <body>
 
-  <p><img src="film_graph_plotter.php" /></p>
+  <img src="film_graph_plotter.php" />
 
 </body>
 </html>
