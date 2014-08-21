@@ -5,7 +5,9 @@ As I started this project very new to PHP (it being my very first piece of PHP c
 I encountered a few problems to begin with in this task whilst trying to set up my local environment, however I managed to overcome most of these with more research and some trial and error.
 I used MAMP to run a local server to check my output. I decided to use this as it was quite straight forward to setup and use, meaning I could focus more on the task rather than setting up and running a server (I originally attempted to use Nginx, but had problems which were taking too long to solve. I will look back into this at a later stage).
 
-In its current state I have managed to write some quite basic code which scrapes the relevant data and puts the revenue and year into seperate arrays. These arrays are then used to create a graph using JpGraph. There is plenty of refactoring and cleaning of the code still to be done.
+In its current state I have managed to write some quite basic code which scrapes the relevant data and puts the revenue and year into seperate arrays. These arrays are then used to create a graph using JpGraph. I have seperated the scripts into a clearer file structure. This should perhaps be classes. There is plenty of refactoring and cleaning of the code still to be done.
+
+I am probably going to attempt this task again but using TDD.
 
 
 The task
