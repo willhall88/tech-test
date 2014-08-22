@@ -14,26 +14,26 @@
 	  foreach ($table as $film_info){
 	    $cell_data = $film_info->textContent;
 
-	    if (yearCheck($cell_data)){
+	    if (year_check($cell_data)){
 	      array_push($year, $cell_data);
 	    }
-	    elseif (currencyCheck($cell_data)) {
-	    	$revenue = currencyToGraphFormat($cell_data);
+	    elseif (currency_check($cell_data)) {
+	    	$revenue = currency_to_graph_format($cell_data);
 	      array_push($revenues, $revenue);
 	    }
 	  }
 	  
-	  function currencyToGraphFormat($currency) {
+	  function currency_to_graph_format($currency) {
 	    $remove_characters = str_replace(array('$', ','), '' , $currency);
 	    return $format_length = ($remove_characters/1000000000);
 	  }
 
-	  function yearCheck($data){
+	  function year_check($data){
 	    $year_pattern = '/[1-2][0-9][0-9][0-9]/';
 	  	return preg_match($year_pattern, $data);
 	  }
 
-	  function currencyCheck($data){
+	  function currency_check($data){
 	    $currency_pattern = '/[$]([0-9].+)/';
 	  	return preg_match($currency_pattern, $data);
 	  }
