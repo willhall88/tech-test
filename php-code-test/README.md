@@ -1,7 +1,7 @@
 # PHP Technical Test
 
-**UPDATE** I have done this test again using TDD. You can find this verion [here].
-[here]:https://github.com/willhall88/php-tech-test
+**UPDATE** I have done this test again using TDD - [Please look here].
+[Please look here]:https://github.com/willhall88/php-tech-test
 
 As I started this project very new to PHP (it being my very first piece of PHP code) I started off just using some trial and error to see what I could get to appear on the screen and understanding the syntax and methods. The task kind of grew from there. I will look into starting this task from scratch with documented tests as the next step.
 
@@ -9,6 +9,8 @@ I encountered a few problems to begin with in this task whilst trying to set up 
 I used MAMP to run a local server to check my output. I decided to use this as it was quite straight forward to setup and use, meaning I could focus more on the task rather than setting up and running a server (I originally attempted to use Nginx, but had problems which were taking too long to solve. I will look back into this at a later stage).
 
 In its current state I have managed to write some code which scrapes the relevant data and puts the revenue and year into seperate arrays. These arrays are then used to create a graph using JpGraph. I have seperated the scripts into a clearer file structure. These should really be classes.
+
+This turned out to be more of a learning exercise of PHP for me rather than a demonstration of my skills. Because of this I decided to carry this task out again. Please follow the link at the top to see my second version.
 
 
 
